@@ -3,75 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Photo Gallery</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>My Photo Gallery</h1>
-    </header>
-
-    <div class="container">
-        <div class="gallery">
-            <img src="images/photo1.jpg" alt="Photo 1">
-            <img src="images/photo2.jpg" alt="Photo 2">
-            <img src="images/photo3.jpg" alt="Photo 3">
-            <img src="images/photo4.jpg" alt="Photo 4">
-            <img src="images/photo5.jpg" alt="Photo 5">
-            <img src="images/photo6.jpg" alt="Photo 6">
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 My Photo Gallery. All rights reserved.</p>
-    </footer>
+    
 </body>
 </html>
