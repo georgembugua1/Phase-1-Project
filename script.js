@@ -27,5 +27,6 @@ function displayImages(imageList) {
 function openModal(Image) {
     const modal = document.getElementById("modal");
     const modalimage = document.getElementById("modalImage")
-    
+    const modalTitle = document.getElementById("modalTitle")
+    const 
 }
