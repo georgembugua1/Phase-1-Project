@@ -55,8 +55,18 @@ uploadButton.addEventListener("click", () => {
             event.target.result, title:
             imageTitle.value.trim(), tags:
             imageTags.value.trim()
+};
+images.push(newImage);
+localStorage.setItem("images", JSON.stringify(images));
+displayImages(images);
+imagesUpload.value = "";
+imageTitle.value = "";
+imageTags.value = "";
         };
-images.push
-        }
+        reader.readAsDataURL(file);
+    }else {
+        alert("PLease select an image and enter title and tags");
     }
-})
+    }
+});
+//Load images on Page//
