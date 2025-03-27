@@ -18,7 +18,10 @@ function displayImages(imageList) {
         const caption = document.createElement("p");;
         caption.textContent = `${image.title} - Tags: ${image.tags}`;
         imgElement.addEventListener("click", () => openModal(Image));
-        imgConatainer.append
-    })
+        imgConatainer.appendChild(imgElement);
+        imgContainer.appendChild(caption);
+        gallery.appendChild(imgContainer);
+    });
 }
+//Function to open Modal//
 
