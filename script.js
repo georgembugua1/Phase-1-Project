@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function displayImages(imageList) {
     gallery.innerHTML = "";
     imageList.forEach((image, index) => {
-        const imgContainer = document
+        const imgContainer = document.createElement("div");
+        imgConatainer.classList.add("image-container"
     })
 }
 
