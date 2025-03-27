@@ -35,5 +35,8 @@ function openModal(Image) {
     modalTitle.textContent = `Tags: ${images.tags}`;
     modalTags.textContent = `Photographer: ${image.user}`;
     modalTags.textContent = `Photographer: ${image user}`;
-    document.
+    document.querySelector(".close").addEventListener("click", () => {
+        modal.style.display = "none";
+    })
 }
+
