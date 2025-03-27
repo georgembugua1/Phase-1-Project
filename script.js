@@ -1,89 +1,118 @@
-const API_KEY = "49554769-be4680af12797a1843a416211";
-
 document.addEventListener("DOMContentLoaded", () => {
     const gallery = document.getElementById("gallery");
-    const searchInput = document.getElementById("searchInput");
-    const uploadButton = document.getElementById("uploadButton");
-    const imageUpload = document.getElementById("imageUpload");
+    const searchInput = document.getElementById("search");
+    const fileInput = document.getElementById("fileInput");
     const imageTitle = document.getElementById("imageTitle");
-    const imageTags = document.getElementById("imageTags"); 
-    let images = JSON.parse(localStorage.getItem("images")) || [];
+    const imageTags = document.getElementById("imageTags");
+    const uploadBtn = document.getElementById("uploadBtn");
 
-    // Function to display images
-    function displayImages(imageList) {
+    const API_KEY = "49554769-be4680af12797a1843a416211";  // Replace with your actual API key
+    const API_URL = "https://pixabay.com/api/?key=" + API_KEY;
+
+    // Fetch images from Pixabay API
+    async function fetchImages(query = "") {
+        let url = API_URL;
+        if (query) {
+            url += `&q=${encodeURIComponent(query)}`;
+        }
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.hits) {
+                displayImages(data.hits);
+            }
+        } catch (error) {
+            console.error("Error fetching images:", error);
+        }
+    }
+
+    // Display images in the gallery
+    function displayImages(images) {
         gallery.innerHTML = "";
-        imageList.forEach((image, index) => {
+        images.forEach((image) => {
             const imgContainer = document.createElement("div");
-            imgContainer.classList.add("image-container");
+            imgContainer.classList.add("image-card");
+            imgContainer.setAttribute("data-tags", image.tags.toLowerCase()); // Store tags for search filtering
 
-            const imgElement = document.createElement("img");
-            imgElement.src = image.url; 
-            imgElement.alt = image.title; 
-            imgElement.classList.add("gallery-item");
+            imgContainer.innerHTML = `
+                <img src="${image.webformatURL}" alt="${image.tags}" class="gallery-image">
+                <p class="tags">Tags: ${image.tags || "No tags"}</p>
+            `;
 
-            const caption = document.createElement("p");
-            caption.textContent = `${image.title} - Tags: ${image.tags}`;
-            imgElement.addEventListener("click", () => openModal(image)); 
-            imgContainer.appendChild(imgElement);
-            imgContainer.appendChild(caption); 
+            // Click event to open modal
+            imgContainer.addEventListener("click", () => openModal(image.largeImageURL, image.tags));
+
             gallery.appendChild(imgContainer);
         });
     }
 
-    // Function to open Modal
-    function openModal(image) {  
+    // Open modal function
+    function openModal(imageUrl, tags) {
         const modal = document.getElementById("modal");
-        const modalImage = document.getElementById("modalImage");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalTags = document.getElementById("modalTags");
+        const modalImg = document.getElementById("modalImg");
+        const caption = document.getElementById("caption");
 
         modal.style.display = "block";
-        modalImage.src = image.url; 
-        modalTitle.textContent = `Title: ${image.title}`; 
-        modalTags.textContent = `Tags: ${image.tags}`;  
-        document.querySelector(".close").addEventListener("click", () => {
+        modalImg.src = imageUrl;
+        caption.innerText = `Tags: ${tags}`;
+
+        // Close modal on click
+        document.querySelector(".close").onclick = () => {
             modal.style.display = "none";
-        });
+        };
     }
 
-    // Function to filter images by tags
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        fetchImages(query);
-    });
+    // Search functionality - Filters both API images & uploaded images
+    function filterImages() {
+        const searchValue = searchInput.value.toLowerCase();
+        const images = document.querySelectorAll(".image-card");
 
-    // Function to handle image upload
-    uploadButton.addEventListener("click", () => {
-        const file = imageUpload.files[0];
-        if (file && imageTitle.value.trim() && imageTags.value.trim()) {
-            const reader = new FileReader(); 
-            reader.onload = (event) => {
-                const newImage = {
-                    url: event.target.result,
-                    title: imageTitle.value.trim(),
-                    tags: imageTags.value.trim()
-                };
-                images.push(newImage);
-                localStorage.setItem("images", JSON.stringify(images));
-                displayImages(images);
-                imageUpload.value = "";  
-                imageTitle.value = "";   
-                imageTags.value = "";    
+        images.forEach((imageCard) => {
+            const tagsText = imageCard.getAttribute("data-tags");
+            if (tagsText && tagsText.includes(searchValue)) {
+                imageCard.style.display = "block";
+            } else {
+                imageCard.style.display = "none";
+            }
+        });
+
+        // Fetch from Pixabay if no local images match
+        if (gallery.children.length === 0) {
+            fetchImages(searchValue);
+        }
+    }
+
+    searchInput.addEventListener("input", filterImages);
+
+    // Handle Image Upload
+    uploadBtn.addEventListener("click", () => {
+        const file = fileInput.files[0];
+        const title = imageTitle.value.trim();
+        const tags = imageTags.value.trim().toLowerCase();
+
+        if (file && title) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imgContainer = document.createElement("div");
+                imgContainer.classList.add("image-card");
+                imgContainer.setAttribute("data-tags", tags); // Store tags for filtering
+
+                imgContainer.innerHTML = `
+                    <img src="${e.target.result}" alt="${title}" class="gallery-image">
+                    <p class="tags">Tags: ${tags || "No tags"}</p>
+                `;
+
+                imgContainer.addEventListener("click", () => openModal(e.target.result, tags));
+
+                gallery.appendChild(imgContainer);
             };
             reader.readAsDataURL(file);
         } else {
-            alert("Please select an image and enter title and tags.");
+            alert("Please select an image and enter a title.");
         }
     });
 
-    // Function to fetch images//
-    function fetchImages(query = "") {
-        const filteredImages = images.filter(image => {
-            return image.title.toLowerCase().includes(query) || image.tags.toLowerCase().includes(query);
-        });
-        displayImages(filteredImages);
-    }
-
-    // Load images on page//
-    displayImages(images);  
+    // Load images on page load
+    fetchImages();
 });

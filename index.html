@@ -7,32 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Photo Gallery</h1>
-<!--upload section-->
-<div id="uploadSction">
-    <input type="file"
-    id="imageUpload" accept="image/*">
-    <input type="text"
-    id="ImageTitle" placeholder="Enter Image">
-    <input type="text"
-    id="imagesTags" placeholder="Enter tags (comma separated)">
-    <button 
-    id="uploadButton"Upload Image
-    button>
-</div>
-<!--Filter Section-->
-<input type="text"
-id="searchInput" placeholder="Search by tags...">
-<!--Gallery Section-->
-<div id="gallery"></div>
+    <h1 class="title">Photo Gallery</h1>
 
-<!--Modal Window for Large Image View-->
-<div id="modal" class="modal">
-    <span class="close">&times;</span>
-    <img id="modalImage">
-    <p id="modalTitle"></p>
-    <P id="modalTags"></P>
-</div>
+    <!-- Image Upload Section -->
+    <div class="upload-section">
+        <input type="file" id="fileInput">
+        <input type="text" id="imageTitle" placeholder="Enter Image Title">
+        <input type="text" id="imageTags" placeholder="Enter tags (comma separated)">
+        <button id="uploadBtn">Upload</button>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search by tags...">
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="gallery" id="gallery"></div>
+
+    <!-- Modal for Large Image View -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div id="caption"></div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
