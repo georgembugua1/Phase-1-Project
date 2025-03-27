@@ -50,6 +50,13 @@ uploadButton.addEventListener("click", () => {
     const file = imageUpload.files[0];
     if (file && imageTitle.value.trim() && imageTags.value.trim()) {
         const reader = newFileReader();
-        
+        reader.onload = (event) => {
+        const newImage = {
+            event.target.result, title:
+            imageTitle.value.trim(), tags:
+            imageTags.value.trim()
+        };
+images.push
+        }
     }
 })
