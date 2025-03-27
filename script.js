@@ -17,7 +17,8 @@ function displayImages(imageList) {
         imgElement.classList.add("gallery-item");
         const caption = document.createElement("p");;
         caption.textContent = `${image.title} - Tags: ${image.tags}`;
-        img
+        imgElement.addEventListener("click", () => openModal(Image));
+        imgConatainer.append
     })
 }
 
