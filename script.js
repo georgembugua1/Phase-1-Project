@@ -10,7 +10,13 @@ function displayImages(imageList) {
     gallery.innerHTML = "";
     imageList.forEach((image, index) => {
         const imgContainer = document.createElement("div");
-        imgConatainer.classList.add("image-container"
+        imgConatainer.classList.add("image-container");
+        const imgElement = document.createElement("img");
+        imgElement.src = image.url;
+        imageElement.alt = image.imagetitle
+        imgElement.classList.add("gallery-item");
+        const caption = document.createElement("p");;
+        c
     })
 }
 
