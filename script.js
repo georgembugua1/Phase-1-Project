@@ -5,5 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const imageUpload = document.getElementById("imageUpload");
     const imageTitle = document.getElementById("imageTitle");
     let images = JSON.parse(localStorage.getItem("images")) || [];
-//FUNCTION
+//Funtion to display images//
+function displayImages(imageList) {
+    galler
+}
 
