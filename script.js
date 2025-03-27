@@ -39,4 +39,11 @@ function openModal(Image) {
         modal.style.display = "none";
     })
 }
+//Function to filter images by tags//
+searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    fetchImages(query);
+});
+    
+//funcion to handle image upload//
 
