@@ -34,7 +34,7 @@ function openModal(Image) {
     modalImage.src = image.largeImageURL;
     modalTitle.textContent = `Tags: ${images.tags}`;
     modalTags.textContent = `Photographer: ${image.user}`;
-    modalTags.textContent = `Photographer: ${image user}`;
+    modalTags.textContent = `Photographer: ${image.user}`;
     document.querySelector(".close").addEventListener("click", () => {
         modal.style.display = "none";
     })
@@ -46,4 +46,10 @@ searchInput.addEventListener("input", () => {
 });
     
 //funcion to handle image upload//
-
+uploadButton.addEventListener("click", () => {
+    const file = imageUpload.files[0];
+    if (file && imageTitle.value.trim() && imageTags.value.trim()) {
+        const reader = newFileReader();
+        
+    }
+})
