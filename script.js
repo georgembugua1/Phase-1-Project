@@ -4,3 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const uploadButton = document.getElementById("uploadButton");
     const imageUpload = document.getElementById("imageUpload");
     const imageTitle = document.getElementById("imageTitle");
+    let images = JSON.parse(localStorage.getItem("images")) || [];
+//FUNCTION
+
