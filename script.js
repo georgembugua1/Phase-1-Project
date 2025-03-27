@@ -1,3 +1,4 @@
+const API_KEY = "49554769-be4680af12797a1843a416211"
 document.addEventListener("DOMContentLoaded", () => {
     const gallery = document.getElementById("gallery");
     const searchinput = document.getElementById("searchInput");
@@ -29,4 +30,6 @@ function openModal(Image) {
     const modalimage = document.getElementById("modalImage")
     const modalTitle = document.getElementById("modalTitle")
     const modalTags = document.getElementById("modalTags");
+    modal.style.display = "block";
+    modal
 }
