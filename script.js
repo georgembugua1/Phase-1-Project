@@ -31,5 +31,9 @@ function openModal(Image) {
     const modalTitle = document.getElementById("modalTitle")
     const modalTags = document.getElementById("modalTags");
     modal.style.display = "block";
-    modal
+    modalImage.src = image.largeImageURL;
+    modalTitle.textContent = `Tags: ${images.tags}`;
+    modalTags.textContent = `Photographer: ${image.user}`;
+    modalTags.textContent = `Photographer: ${image user}`;
+    document.
 }
