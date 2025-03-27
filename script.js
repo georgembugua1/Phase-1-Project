@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let images = JSON.parse(localStorage.getItem("images")) || [];
 //Funtion to display images//
 function displayImages(imageList) {
-    galler
+    gallery.innerHTML = "";
+    imageList.forEach((image, index) => {
+        const imgContainer = document
+    })
 }
 
