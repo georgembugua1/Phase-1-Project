@@ -16,7 +16,8 @@ function displayImages(imageList) {
         imageElement.alt = image.imagetitle
         imgElement.classList.add("gallery-item");
         const caption = document.createElement("p");;
-        c
+        caption.textContent = `${image.title} - Tags: ${image.tags}`;
+        img
     })
 }
 
