@@ -24,4 +24,7 @@ function displayImages(imageList) {
     });
 }
 //Function to open Modal//
-
+function openModal(Image) {
+    const modal = document.getElementById("modal");
+    const
+}
