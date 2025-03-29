@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         images.forEach((image) => {
             const imgContainer = document.createElement("div");
             imgContainer.classList.add("image-card");
-            imgContainer.setAttribute("data-tags", image.tags.toLowerCase()); // Store tags for search filtering
+            imgContainer.setAttribute("data-tags", image.tags.toLowerCase());
 
             imgContainer.innerHTML = `
                 <img src="${image.webformatURL}" alt="${image.tags}" class="gallery-image">
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // Search functionality - Filters both API images & uploaded images
+    // Search functionality 
     function filterImages() {
         const searchValue = searchInput.value.toLowerCase();
         const images = document.querySelectorAll(".image-card");
