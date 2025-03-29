@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const imageTags = document.getElementById("imageTags");
     const uploadBtn = document.getElementById("uploadBtn");
 
-    const API_KEY = "49554769-be4680af12797a1843a416211";  // Replace with your actual API key
+    const API_KEY = "49554769-be4680af12797a1843a416211";  
     const API_URL = "https://pixabay.com/api/?key=" + API_KEY;
 
     // Fetch images from Pixabay API
